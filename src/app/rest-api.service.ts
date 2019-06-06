@@ -10,6 +10,9 @@ const apiUrl = "http://api.zippopotam.us/";
 })
 export class RestApiService {
 
+  token: any;
+  id: any;
+
   constructor(private http: HttpClient) { }
 
   getData(): Observable<any> {
@@ -25,7 +28,7 @@ export class RestApiService {
     return this.http.get(path);
   }
 
-  loginPost(emailPost: any, passwordPost:any ){
+  loginPost(emailPost: any, passwordPost:any ):Observable<any>{
     const httpHeaders = new HttpHeaders ({
       'Content-Type': 'application/json',
       'Accept': 'application/json' 
@@ -41,8 +44,25 @@ export class RestApiService {
      // return this.http.get(path1);
   }
 
-  getAllEvents(id: any){
-    const path = "http://192.168.1.171/middleware/public/api/list_events_free_cors/"+id;
-    return this.http.get(path);
+  setToken(token: any){
+    this.token = token;
+  }
+
+  setId(id: any){
+    this.id = id;
+  }
+
+  getToken(){
+    return this.token;
+  }
+
+  getAllEvents(){
+    const httpHeaders = new HttpHeaders ({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer '+ this.token
+    });
+    const path = "http://192.168.1.171/middleware/public/api/list_events_free_cors/"+this.id;
+    return this.http.get(path,{headers: httpHeaders});
   }
 }

@@ -10,11 +10,20 @@ export class EventsListPage implements OnInit {
 
   constructor(public api: RestApiService) { }
 
-  getAllEvents(){
+  getAllTasks(){
+    //console.log(this.api.getAllEvents());
+    this.api.getAllEvents().subscribe(
+      data =>{
+        console.log(data);
+      }
+      ,error =>{
+        console.log("noo");
+      })
   }
 
 
   ngOnInit() {
+    this.getAllTasks();
   }
 
 }

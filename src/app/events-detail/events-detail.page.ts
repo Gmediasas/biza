@@ -14,14 +14,18 @@ export class EventsDetailPage implements OnInit {
   constructor(public api: RestApiService, public loadingController: LoadingController) { }
 
   getAllTasks(){
-    this.api.getAllTask()
-    .subscribe( todos => {
-      this.data = todos;
-      console.log(todos);
-    });
+    //console.log(this.api.getAllEvents());
+    this.api.getAllEvents().subscribe(
+      data =>{
+        console.log(data);
+      }
+      ,error =>{
+        console.log("noo");
+      })
   }
 
   ngOnInit() {
+    this.getAllTasks();
   }
 
 }
