@@ -13,13 +13,14 @@ export class HomePage {
 
   nombre: string;
   password: string;
-  token: string;
-  id: any;
-  data: any;
 
-  constructor(public api: RestApiService,  
+  constructor(
+    public api: RestApiService,  
     public alertCtrl: AlertController,
-    private router: Router) {}
+    private router: Router
+  ) {}
+
+  // Metodo de inicio de sesion
 
   login(){
      this.api.loginPost(this.nombre, this.password).subscribe(
@@ -27,10 +28,8 @@ export class HomePage {
       data =>{
         if (data !== null && data !== undefined) {
           this.router.navigateByUrl('/events-list');
-          this.id = data.user.id;
-          this.token = data.access_token;
-          this.api.setToken(this.token);
-          this.api.setId(this.id);
+          this.api.setToken(data.access_token);
+          this.api.setId( data.user.id);
         }else{
          this.presentAlert('Datos incorrectos');
         }
@@ -53,16 +52,16 @@ export class HomePage {
         this.presentAlert(error_text);
       }
     ) 
-    //console.log(this.nombre, this.password);
   }
 
+  // Alert errores
+  
   async presentAlert(mensaje: string) {
     const alert = await this.alertCtrl.create({
       header: 'Error',
       message: mensaje,
       buttons: ['OK']
     });
-
     await alert.present();
   }
 

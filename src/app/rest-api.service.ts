@@ -14,48 +14,38 @@ export class RestApiService {
   id: any;
 
   constructor(private http: HttpClient) { }
-
-  getData(): Observable<any> {
-    let response1 = this.http.get(apiUrl+'US/00210');
-    let response2= this.http.get(apiUrl+'IN/110001');
-    let response3 = this.http.get(apiUrl+'BR/01000-000');
-    let response4 = this.http.get(apiUrl+'FR/01000');
-    return forkJoin([response1, response2, response3, response4]);
-  }
   
   getAllTask(){
     const path = "http://localhost/middleware/public/api/detail_event_free/2";
     return this.http.get(path);
   }
 
+  // Metodo para realizar el login
   loginPost(emailPost: any, passwordPost:any ):Observable<any>{
     const httpHeaders = new HttpHeaders ({
       'Content-Type': 'application/json',
       'Accept': 'application/json' 
     });
     const path = "http://192.168.1.171/middleware/public/api/login_user_cors";
-    const path1 = "http://localhost/middleware/public/api/detail_event_free_cors/2";
 
     return this.http.post(path,{
       email: emailPost,
       password: passwordPost,
       remember_me: true
       },{ headers: httpHeaders }) 
-     // return this.http.get(path1);
   }
 
+  // Inicializar token
   setToken(token: any){
     this.token = token;
   }
 
+  // Inicializar id
   setId(id: any){
     this.id = id;
   }
 
-  getToken(){
-    return this.token;
-  }
-
+  // Obtener todos los eventos de un usuario
   getAllEvents():Observable<any>{
     const httpHeaders = new HttpHeaders ({
       'Content-Type': 'application/json',
@@ -65,4 +55,5 @@ export class RestApiService {
     const path = "http://192.168.1.171/middleware/public/api/list_events_free_cors/"+this.id;
     return this.http.get(path,{headers: httpHeaders});
   }
+
 }

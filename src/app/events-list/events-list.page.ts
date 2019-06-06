@@ -14,7 +14,6 @@ export class EventsListPage implements OnInit {
   constructor(public api: RestApiService, private router: Router) { }
 
   getAllTasks(){
-    //console.log(this.api.getAllEvents());
     this.api.getAllEvents().subscribe(
       data =>{
         this.items = data.eventosFree
