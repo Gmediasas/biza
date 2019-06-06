@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RestApiService } from '../rest-api.service';
 
 @Component({
   selector: 'app-events-list',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventsListPage implements OnInit {
 
-  constructor() { }
+  constructor(public api: RestApiService) { }
+
+  getAllEvents(){
+  }
+
 
   ngOnInit() {
   }

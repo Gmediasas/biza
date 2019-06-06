@@ -16,11 +16,18 @@
         He <ion-text color="primary"><i>was</i></ion-text> looking for a place called Lee Ho Fook's.
         Gonna get a <ion-text color="secondary"><a>big dish of beef chow mein.</a></ion-text>
         <ion-text color="danger"><ion-icon name="cut"></ion-icon></ion-text>
-      </p>
-      <ion-button routerLink="/events-list" size="large"  expand="block">
+    </p>
+    <ion-button routerLink="/events-list" size="large"  expand="block">
         Codigo QR
-      </ion-button>
-      <ion-button routerLink="/events-list" size="large"  expand="block">
-        Lista
-      </ion-button>
+    </ion-button>
+    <ion-button routerLink="/events-list" size="large"  expand="block">
+      Lista
+    </ion-button>
+
+
+    <ion-card-content>
+      <ul>
+        <li *ngFor="let p of data">{{p['title']}}</li>
+      </ul>
+    </ion-card-content>
 </ion-content>

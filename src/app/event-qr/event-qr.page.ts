@@ -9,6 +9,7 @@ export class EventQRPage implements OnInit {
 
   constructor() { }
 
+  
   ngOnInit() {
   }
 

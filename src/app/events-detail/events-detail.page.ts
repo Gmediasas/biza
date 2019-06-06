@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LoadingController } from '@ionic/angular';
+import { RestApiService } from '../rest-api.service';
 
 @Component({
   selector: 'app-events-detail',
@@ -7,7 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventsDetailPage implements OnInit {
 
-  constructor() { }
+  data: any;
+
+  constructor(public api: RestApiService, public loadingController: LoadingController) { }
+
+  getAllTasks(){
+    this.api.getAllTask()
+    .subscribe( todos => {
+      this.data = todos;
+      console.log(todos);
+    });
+  }
 
   ngOnInit() {
   }
