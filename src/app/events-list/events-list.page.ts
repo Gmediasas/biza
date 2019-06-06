@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestApiService } from '../rest-api.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-events-list',
@@ -8,13 +9,16 @@ import { RestApiService } from '../rest-api.service';
 })
 export class EventsListPage implements OnInit {
 
-  constructor(public api: RestApiService) { }
+  items: Array<any> = [];
+
+  constructor(public api: RestApiService, private router: Router) { }
 
   getAllTasks(){
     //console.log(this.api.getAllEvents());
     this.api.getAllEvents().subscribe(
       data =>{
-        console.log(data);
+        this.items = data.eventosFree
+        console.log(data.eventosFree);
       }
       ,error =>{
         console.log("noo");

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
 import { RestApiService } from '../rest-api.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-events-detail',
@@ -9,15 +10,20 @@ import { RestApiService } from '../rest-api.service';
 })
 export class EventsDetailPage implements OnInit {
 
+  items: Array<any> = [];
   data: any;
 
-  constructor(public api: RestApiService, public loadingController: LoadingController) { }
+  constructor(public api: RestApiService, 
+    public loadingController: LoadingController, 
+    public route: ActivatedRoute,
+    public router: Router) { }
 
   getAllTasks(){
     //console.log(this.api.getAllEvents());
     this.api.getAllEvents().subscribe(
       data =>{
-        console.log(data);
+        this.items = data.eventosFree
+        console.log(data.eventosFree);
       }
       ,error =>{
         console.log("noo");
@@ -25,7 +31,7 @@ export class EventsDetailPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getAllTasks();
+    console.log(this.route.snapshot.params['event']);
   }
 
 }

@@ -9,6 +9,11 @@
 
 <ion-content>
     <ion-list>
+        <ion-item *ngFor="let item of items" [routerLink]="'/events-detail/' + item.id">
+            {{ item.nombre }}
+        </ion-item>
+    </ion-list>
+    <!-- <ion-list>
         <ion-item routerLink="/events-detail">
           <ion-label>Pokémon Yellow</ion-label>
         </ion-item>
@@ -24,5 +29,5 @@
         <ion-item>
           <ion-label>Super Mario World</ion-label>
         </ion-item>
-      </ion-list>
+      </ion-list> -->
 </ion-content>

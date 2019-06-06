@@ -56,7 +56,7 @@ export class RestApiService {
     return this.token;
   }
 
-  getAllEvents(){
+  getAllEvents():Observable<any>{
     const httpHeaders = new HttpHeaders ({
       'Content-Type': 'application/json',
       'Accept': 'application/json',
