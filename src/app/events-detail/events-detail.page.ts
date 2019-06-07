@@ -12,6 +12,9 @@ export class EventsDetailPage implements OnInit {
 
   items: Array<any> = [];
   data: any;
+  evento: any;
+  descripcion: any;
+  imagen: any;
 
   constructor(public api: RestApiService, 
     public loadingController: LoadingController, 
@@ -30,8 +33,21 @@ export class EventsDetailPage implements OnInit {
       })
   }
 
+  getEventsDetails(){
+    this.api.getDetailsEvents(this.route.snapshot.params['event']).subscribe(
+      data =>{
+        this.evento = data.evento.nombre
+        this.descripcion = data.evento.descripcion
+        this.imagen = data.imagenLogo.imagen
+        //console.log(data);
+      }
+      ,error =>{
+        console.log("noo");
+      })
+  }
+
   ngOnInit() {
-    console.log(this.route.snapshot.params['event']);
+    this.getEventsDetails();
   }
 
 }

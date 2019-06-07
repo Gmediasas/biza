@@ -52,7 +52,17 @@ export class RestApiService {
       'Accept': 'application/json',
       'Authorization': 'Bearer '+ this.token
     });
-    const path = "http://192.168.1.171/middleware/public/api/list_events_free_cors/"+this.id;
+    const path = "http://192.168.1.171/middleware/public/api/list_events_free_cors/" + this.id;
+    return this.http.get(path,{headers: httpHeaders});
+  }
+
+  getDetailsEvents(evento: any):Observable<any>{
+    const httpHeaders = new HttpHeaders ({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer '+ this.token
+    });
+    const path = "http://192.168.1.171/middleware/public/api/detail_event_free_cors/" + evento;
     return this.http.get(path,{headers: httpHeaders});
   }
 
