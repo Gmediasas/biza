@@ -66,7 +66,7 @@ export class RestApiService {
     return this.http.get(path,{headers: httpHeaders});
   }
 
-  getListTickets(evento: any){
+  getListTickets(evento: any):Observable<any>{
     const httpHeaders = new HttpHeaders ({
       'Content-Type': 'application/json',
       'Accept': 'application/json',
