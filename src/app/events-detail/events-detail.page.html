@@ -27,7 +27,7 @@
             <ion-button routerLink="/events-list" size="large"  expand="block">
               Codigo QR
             </ion-button>
-            <ion-button routerLink="/events-list" size="large"  expand="block">
+            <ion-button id="{{id}}" [routerLink]="'/event-list/' + id" size="large"  expand="block">
               Lista
             </ion-button>
         </ion-col>

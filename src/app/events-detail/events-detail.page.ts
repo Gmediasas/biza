@@ -23,6 +23,7 @@ export class EventsDetailPage implements OnInit {
   evento: any;
   descripcion: any;
   imagen: any;
+  id: any;
 
   constructor(public api: RestApiService, 
     public loadingController: LoadingController, 
@@ -69,6 +70,7 @@ export class EventsDetailPage implements OnInit {
         this.evento = data.evento.nombre
         this.descripcion = data.evento.descripcion
         this.imagen = data.imagenLogo.imagen
+        this.id = data.evento.id
         //console.log(data);
       }
       ,error =>{

@@ -9,10 +9,12 @@ import { RestApiService } from '../rest-api.service';
 })
 export class EventListPage implements OnInit {
 
-  constructor() { }
+  tickes: any[] = [];
+
+  constructor(public api: RestApiService) { }
 
   getAllEvents(){
-
+    this.api.getListTickets
   }
 
   ngOnInit() {
