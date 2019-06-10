@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class EventListPage implements OnInit {
 
   tickes: any[] = [];
+  textoBuscar = '';
 
   constructor(public api: RestApiService, public route: ActivatedRoute) { }
 
@@ -17,15 +18,16 @@ export class EventListPage implements OnInit {
     this.api.getListTickets(this.route.snapshot.params['event']).subscribe(
       data =>{
         this.tickes = data.boletas;
-        console.log(this.tickes);
+        //console.log(this.tickes);
       }
       ,error =>{
         console.log("noo");
       })
   }
 
-  buscar(){
-    
+  buscar(event){
+    //console.log(event);
+    this.textoBuscar = event.detail.value;
   }
 
   ngOnInit() {
