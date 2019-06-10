@@ -26,7 +26,7 @@ export class RestApiService {
       'Content-Type': 'application/json',
       'Accept': 'application/json' 
     });
-    const path = "http://192.168.1.171/middleware/public/api/login_user_cors";
+    const path = "https://testing.gevents.co/middleware/public/api/login_user_cors";
 
     return this.http.post(path,{
       email: emailPost,

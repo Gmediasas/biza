@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
 import { RestApiService } from '../rest-api.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import {
+  BarcodeScannerOptions,
+  BarcodeScanner
+} from "@ionic-native/barcode-scanner/ngx";
 
 @Component({
   selector: 'app-events-detail',
@@ -9,6 +13,10 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./events-detail.page.scss'],
 })
 export class EventsDetailPage implements OnInit {
+
+  encodeData: any;
+  scannedData: {};
+  barcodeScannerOptions: BarcodeScannerOptions;
 
   items: Array<any> = [];
   data: any;
@@ -19,8 +27,30 @@ export class EventsDetailPage implements OnInit {
   constructor(public api: RestApiService, 
     public loadingController: LoadingController, 
     public route: ActivatedRoute,
-    public router: Router) { }
+    private barcodeScanner: BarcodeScanner,
+    public router: Router) {
+      this.encodeData = "https://www.FreakyJolly.com";
+      //Options
+      this.barcodeScannerOptions = {
+        showTorchButton: true,
+        showFlipCameraButton: true
+      };
+    }
 
+
+  scanCode() {
+    this.barcodeScanner
+      .scan()
+      .then(barcodeData => {
+        alert("Barcode data " + JSON.stringify(barcodeData));
+        this.scannedData = barcodeData;
+      })
+      .catch(err => {
+        console.log("Error", err);
+      });
+  }
+
+  
   getAllTasks(){
     //console.log(this.api.getAllEvents());
     this.api.getAllEvents().subscribe(

@@ -13,12 +13,17 @@
         <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
             <ion-img class="imgDescrip" [src]="'http://192.168.1.173/middleware/public/images/events/'+ imagen"></ion-img>
             <p>
-                {{ evento }}
+              {{ evento }}
             </p>
 
             <p>
-                {{ descripcion }}
+              {{ descripcion }}
             </p>
+
+            <ion-button (click)="scanCode()">
+              Scan Code
+            </ion-button>
+
             <ion-button routerLink="/events-list" size="large"  expand="block">
               Codigo QR
             </ion-button>
