@@ -36,19 +36,6 @@ export class HomePage {
     };
   }
 
-
-  scanCode() {
-    this.barcodeScanner
-      .scan()
-      .then(barcodeData => {
-        alert("Barcode data " + JSON.stringify(barcodeData));
-        this.scannedData = barcodeData;
-      })
-      .catch(err => {
-        console.log("Error", err);
-      });
-  }
-
   // Metodo de inicio de sesion
 
   login(){
@@ -93,5 +80,6 @@ export class HomePage {
     });
     await alert.present();
   }
+
 
 }

@@ -24,6 +24,19 @@ export class EventsListPage implements OnInit {
       })
   }
 
+ /*  scanCode() {
+    var data = "ItPT1s4p93iiQzAEdKFgTKjPi28mfDtuKT8hG1UwBOQJNwuiyqLa8gkLumYBi89gDaRVH0IydTKx/0y0vxxs1vKV1REONCEkuROf1Mhlt9FckLZsAES9h/tg1U9rOGkG";
+    this.api.sendCodeQR(data).subscribe(
+      data =>{
+        alert("Barcode data " + data.boletas);
+        console.log(data.boletas);
+      },
+      (err) => {
+        alert("Error " + err);
+      }
+    );
+  } */
+
 
   ngOnInit() {
     this.getAllTasks();

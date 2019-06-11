@@ -15,7 +15,7 @@ import {
 export class EventsDetailPage implements OnInit {
 
   encodeData: any;
-  scannedData: {};
+  scannedData: string;
   barcodeScannerOptions: BarcodeScannerOptions;
 
   items: Array<any> = [];
@@ -43,12 +43,35 @@ export class EventsDetailPage implements OnInit {
     this.barcodeScanner
       .scan()
       .then(barcodeData => {
-        alert("Barcode data " + JSON.stringify(barcodeData));
-        this.scannedData = barcodeData;
+        //alert("Barcode data " + JSON.stringify(barcodeData));
+        this.scannedData = barcodeData.text;
+        this.api.sendCodeQR(this.scannedData).subscribe(
+        data =>{
+          alert("Barcode data " + data.boletas);
+          console.log(data.boletas);
+        },
+      (err) => {
+        alert("Error " + err);
+      }
+    );
+
+        /* this.api.sendCodeQR(this.scannedData).subscribe(
+          data =>{
+            alert("Barcode data " + data);
+            //console.log(data);
+          },
+          (err) => {alert("Error " + err);}); */
+
       })
       .catch(err => {
         console.log("Error", err);
       });
+
+      /* this.api.sendCodeQR(this.scannedData).subscribe(
+        data =>{
+          alert("Barcode data " + JSON.stringify(data));
+          //console.log(data);
+        }) */
   }
 
   

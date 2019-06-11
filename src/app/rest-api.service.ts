@@ -76,4 +76,15 @@ export class RestApiService {
     return this.http.get(path,{headers: httpHeaders});
   }
 
+  sendCodeQR(codigo: any):Observable<any>{
+    const httpHeaders = new HttpHeaders ({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer '+ this.token
+    });
+
+    const path = "https://testing.gevents.co/middleware/public/api/decode_code_QR";
+    return this.http.post(path,{"codigo":codigo},{headers: httpHeaders});
+  }
+
 }
