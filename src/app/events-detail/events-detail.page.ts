@@ -46,8 +46,18 @@ export class EventsDetailPage implements OnInit {
         this.scannedData = barcodeData.text;
         this.api.sendCodeQR(this.scannedData).subscribe(
         data =>{
-          alert("Barcode data " + data.boletas);
-          console.log(data.boletas);
+          var mensaje = "";
+          if (data.estado == "1"){
+            mensaje = "Boleta validada correctamente, Bienvenido."
+          }else if(data.estado == "2"){
+            mensaje = "Boleta anulada."
+          }else if(data.estado == "3"){
+            mensaje = "Boleta ya fue validada"
+          }else{
+            mensaje = "Problema al validar"
+          }
+          alert("Mensaje: " + mensaje);
+          //console.log(data.boletas);    
         },(err) => {
             alert("Error " + err);
           }
