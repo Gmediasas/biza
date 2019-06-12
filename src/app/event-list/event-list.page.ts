@@ -11,6 +11,7 @@ export class EventListPage implements OnInit {
 
   tickes: any[] = [];
   textoBuscar = '';
+  boleta: string;
 
   constructor(public api: RestApiService, public route: ActivatedRoute) { }
 
@@ -28,6 +29,11 @@ export class EventListPage implements OnInit {
   buscar(event){
     //console.log(event);
     this.textoBuscar = event.detail.value;
+  }
+
+
+  datos(){
+    console.log(this.boleta);
   }
 
   ngOnInit() {
