@@ -5,23 +5,22 @@
       </ion-buttons>
       <ion-title>alert</ion-title>
     </ion-toolbar>
-
-    <ion-searchbar animated (ionChange)="buscar($event)"></ion-searchbar>
-
   </ion-header>
 
 <ion-content>
-  <form [formGroup]="FormGroup" (ngSubmit)="datos()">
+  <form [formGroup]="form" (ngSubmit)="submit()">
       <ion-list>
-          <ion-item *ngFor="let ticket of tickes | filtro: textoBuscar">
-              <ion-label *ngIf="ticket.estado_id == '13' ">{{ ticket.nombre_apellido }} {{ ticket.codigo_boleta }}</ion-label>
-              <ion-checkbox *ngIf="ticket.estado_id =='13'" formControlName="control"  value="{{ ticket.id }}" name="{{ ticket.id }}"></ion-checkbox>
-              <ion-label *ngIf="ticket.estado_id != '13' ">{{ ticket.nombre_apellido }} {{ ticket.codigo_boleta }}</ion-label>
-          </ion-item> 
-        </ion-list>
-        <div size="large" padding >
-            <ion-button  size="large" type="submit"  expand="block">Ingresar</ion-button>
-         </div>
+          <ion-item  formArrayName="orders" *ngFor="let order of form.controls.orders.controls; let i = index">
+              <ion-label >{{ orders[i].nombre_apellido }}</ion-label>
+              <ion-checkbox [formControlName]="i"></ion-checkbox>
+          </ion-item>
+      </ion-list>
+  
+    <div *ngIf="!form.valid">At least one order must be selected</div>
+    <br>
+    <div size="large" padding >
+        <ion-button  size="large" type="submit"  expand="block">Ingresar</ion-button>	            <ion-button  size="large" type="submit"  expand="block">Ingresar</ion-button>
+     </div>
   </form>
     
 </ion-content>
