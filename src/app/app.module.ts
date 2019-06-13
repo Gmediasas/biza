@@ -12,11 +12,21 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { HttpClientModule } from '@angular/common/http';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
+
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, PipesModule],
+  imports: [
+    BrowserModule, 
+    IonicModule.forRoot(), 
+    AppRoutingModule, 
+    HttpClientModule, 
+    PipesModule,  
+    FormsModule,  
+    ReactiveFormsModule,
+  ],
   providers: [
     StatusBar,
     SplashScreen,

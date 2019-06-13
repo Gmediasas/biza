@@ -11,16 +11,16 @@
   </ion-header>
 
 <ion-content>
-  <form #form="ngForm" (ngSubmit)="datos()">
+  <form [formGroup]="FormGroup" (ngSubmit)="datos()">
       <ion-list>
           <ion-item *ngFor="let ticket of tickes | filtro: textoBuscar">
               <ion-label *ngIf="ticket.estado_id == '13' ">{{ ticket.nombre_apellido }} {{ ticket.codigo_boleta }}</ion-label>
-              <ion-checkbox *ngIf="ticket.estado_id =='13'" [(ngModel)]="boleta" value="{{ ticket.id }}" name="boleta"></ion-checkbox>
+              <ion-checkbox *ngIf="ticket.estado_id =='13'" formControlName="control"  value="{{ ticket.id }}" name="{{ ticket.id }}"></ion-checkbox>
               <ion-label *ngIf="ticket.estado_id != '13' ">{{ ticket.nombre_apellido }} {{ ticket.codigo_boleta }}</ion-label>
           </ion-item> 
         </ion-list>
         <div size="large" padding >
-            <ion-button  size="large" type="submit" [disabled]="form.invalid" expand="block">Ingresar</ion-button>
+            <ion-button  size="large" type="submit"  expand="block">Ingresar</ion-button>
          </div>
   </form>
     
