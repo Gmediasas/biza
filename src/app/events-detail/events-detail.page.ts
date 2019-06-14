@@ -44,7 +44,7 @@ export class EventsDetailPage implements OnInit {
       .scan()
       .then(barcodeData => {
         this.scannedData = barcodeData.text;
-        this.api.sendCodeQR(this.scannedData).subscribe(
+        this.api.sendCodeQR(this.scannedData, this.id).subscribe(
         data =>{
           var mensaje = "";
           if (data.estado == "1"){
