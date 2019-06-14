@@ -81,5 +81,4 @@ export class HomePage {
     await alert.present();
   }
 
-
 }

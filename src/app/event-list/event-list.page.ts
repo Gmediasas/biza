@@ -3,24 +3,37 @@ import { RestApiService } from '../rest-api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup,FormArray, ValidatorFn } from '@angular/forms';
 
-
-
 @Component({
   selector: 'app-event-list',
   templateUrl: './event-list.page.html',
   styleUrls: ['./event-list.page.scss'],
 })
+
 export class EventListPage implements OnInit {
   FormGroup: FormGroup;
   orders = [];
   tickes: any[] = [];
   textoBuscar = '';
   boleta: string;
+  final = [];
 
-  constructor(public api: RestApiService, public route: ActivatedRoute,private formBuilder: FormBuilder) { 
+  constructor(public api: RestApiService, public route: ActivatedRoute,private formBuilder: FormBuilder, private router: Router) { 
     this.FormGroup = this.formBuilder.group({
       boletas: new FormArray([], minSelectedCheckboxes(1))
     });
+  }
+
+
+  selection(name: string) {
+    //console.log(name)
+    var index = this.final.indexOf(name);
+    if(index >= 0){
+      this.final.splice(index, 1);
+    }else{
+      this.final.push(name);
+    }
+    //console.log("indice" + index);
+    console.log(this.final);
   }
 
   getAllEvents(){
@@ -41,7 +54,26 @@ export class EventListPage implements OnInit {
 
 
   datos(){
-    console.log(this.FormGroup.controls['boletas'].value);
+    if(this.final.length > 0){
+      this.api.validateMultiTickets(this.final).subscribe(
+        data =>{
+          console.log(data);
+           if(data.estado == 1){
+            alert("Mensaje: " + "Boletas Registradas");
+          }else{
+            alert("Mensaje: " + "Problemas al registrar");
+          }
+
+          this.router.navigateByUrl('/events-list'); 
+        }
+        ,error =>{
+          console.log("noo");
+        })
+      
+    }else{
+      alert("Mensaje: " + "Selecione al menos una boleta");
+    }
+    
   }
 
   ngOnInit() {

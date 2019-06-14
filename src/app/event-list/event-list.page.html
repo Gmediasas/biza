@@ -13,14 +13,14 @@
 <ion-content>
   <form [formGroup]="FormGroup" (ngSubmit)="datos()">
       <ion-list>
-          <ion-item *ngFor="let ticket of tickes | filtro: textoBuscar">
+          <ion-item *ngFor="let ticket of tickes | filtro: textoBuscar; let i = index">
               <ion-label *ngIf="ticket.estado_id == '13' ">{{ ticket.nombre_apellido }} {{ ticket.codigo_boleta }}</ion-label>
-              <ion-checkbox *ngIf="ticket.estado_id =='13'" formControlName="control"  value="{{ ticket.id }}" name="{{ ticket.id }}"></ion-checkbox>
+              <ion-checkbox  (click)="selection(ticket.id)" *ngIf="ticket.estado_id =='13'" ></ion-checkbox>
               <ion-label *ngIf="ticket.estado_id != '13' ">{{ ticket.nombre_apellido }} {{ ticket.codigo_boleta }}</ion-label>
           </ion-item> 
         </ion-list>
         <div size="large" padding >
-            <ion-button  size="large" type="submit"  expand="block">Ingresar</ion-button>
+            <ion-button  size="large" type="submit"  expand="block">Registrar Ingreso</ion-button>
          </div>
   </form>
     
