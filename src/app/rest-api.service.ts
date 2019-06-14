@@ -98,5 +98,13 @@ export class RestApiService {
     return this.http.post(path,{"boletas":tickes},{headers: httpHeaders});
   }
 
+  validateLogin(){
+    if (this.token == undefined){
+      return 0;
+    }else{
+      return 1;
+    }
+  }
+
 
 }

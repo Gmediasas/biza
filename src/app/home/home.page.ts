@@ -74,11 +74,17 @@ export class HomePage {
   
   async presentAlert(mensaje: string) {
     const alert = await this.alertCtrl.create({
-      header: 'Error',
+      header: 'Gevents',
       message: mensaje,
       buttons: ['OK']
     });
     await alert.present();
+  }
+
+  ionViewWillEnter() {
+    if(this.api.validateLogin() != 0){
+      this.router.navigateByUrl('/events-list');
+    }
   }
 
 }

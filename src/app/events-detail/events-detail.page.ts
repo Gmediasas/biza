@@ -99,4 +99,5 @@ export class EventsDetailPage implements OnInit {
     this.getEventsDetails();
   }
 
+
 }
