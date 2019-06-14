@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RestApiService } from '../rest-api.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup,FormArray, ValidatorFn } from '@angular/forms';
 
 @Component({
@@ -17,7 +18,12 @@ export class EventListPage implements OnInit {
   boleta: string;
   final = [];
 
-  constructor(public api: RestApiService, public route: ActivatedRoute,private formBuilder: FormBuilder, private router: Router) { 
+  constructor(public api: RestApiService, 
+    public route: ActivatedRoute,
+    private formBuilder: FormBuilder, 
+    private router: Router,
+    public alertCtrl: AlertController,
+    ) { 
     this.FormGroup = this.formBuilder.group({
       boletas: new FormArray([], minSelectedCheckboxes(1))
     });
@@ -59,9 +65,11 @@ export class EventListPage implements OnInit {
         data =>{
           console.log(data);
            if(data.estado == 1){
-            alert("Mensaje: " + "Boletas Registradas");
+            //alert("Mensaje: " + "Boletas Registradas");
+            this.presentAlert("Boletas Registradas");
           }else{
-            alert("Mensaje: " + "Problemas al registrar");
+            this.presentAlert("Problemas al registrar");
+            //alert("Mensaje: " + "Problemas al registrar");
           }
 
           this.router.navigateByUrl('/events-list'); 
@@ -71,7 +79,8 @@ export class EventListPage implements OnInit {
         })
       
     }else{
-      alert("Mensaje: " + "Selecione al menos una boleta");
+      //alert("Mensaje: " + "Selecione al menos una boleta");
+      this.presentAlert("Selecione al menos una boleta");
     }
     
   }
@@ -88,7 +97,18 @@ export class EventListPage implements OnInit {
     console.log(selectedOrderIds);
   }
 
+  async presentAlert(mensaje: string) {
+    const alert = await this.alertCtrl.create({
+      header: 'Gevents',
+      message: mensaje,
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
+
 }
+
+
 
 function minSelectedCheckboxes(min = 1) {
   const validator: ValidatorFn = (formArray: FormArray) => {
