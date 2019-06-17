@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
 import { RestApiService } from '../rest-api.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+
 import {
   BarcodeScannerOptions,
   BarcodeScanner
@@ -29,7 +31,8 @@ export class EventsDetailPage implements OnInit {
     public loadingController: LoadingController, 
     public route: ActivatedRoute,
     private barcodeScanner: BarcodeScanner,
-    public router: Router) {
+    public router: Router,
+    public alertCtrl: AlertController) {
       this.encodeData = "https://www.FreakyJolly.com";
       //Options
       this.barcodeScannerOptions = {
@@ -56,10 +59,12 @@ export class EventsDetailPage implements OnInit {
           }else{
             mensaje = "Problema al validar"
           }
-          alert("Mensaje: " + mensaje);
+          this.presentAlert(mensaje);
+          //alert("Mensaje: " + mensaje);
           //console.log(data.boletas);    
         },(err) => {
-            alert("Error " + err);
+          this.presentAlert(err);
+            //alert("Error " + err);
           }
         );
       })
@@ -99,5 +104,14 @@ export class EventsDetailPage implements OnInit {
     this.getEventsDetails();
   }
 
+
+  async presentAlert(mensaje: string) {
+    const alert = await this.alertCtrl.create({
+      header: 'Gevents',
+      message: mensaje,
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
 
 }
