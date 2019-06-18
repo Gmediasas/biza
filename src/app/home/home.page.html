@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Ingreso
+      Login
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -19,12 +19,15 @@
     <ion-grid>
       <ion-row color="primary" justify-content-center>
         <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div align="center">
+            <img class="logo mt-20 mb-20" src="" alt="G-Fashion" src="https://testing.gevents.co/eventosFree/public/img/logo@2x.png" />
+          </div>
           <div text-center>
-            <h3>Ingreso</h3>
+            <h3>Bienvenido</h3>
           </div>
           <div padding>
             <ion-item>
-              <ion-input [(ngModel)]="nombre" name="email" type="email" placeholder="mail@email.com" required></ion-input>
+              <ion-input [(ngModel)]="nombre" name="email" type="email" placeholder="Correo electrónico" required></ion-input>
             </ion-item>
             <ion-item>
               <ion-input [(ngModel)]="password" name="password" type="password" placeholder="Contraseña" required></ion-input>

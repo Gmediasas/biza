@@ -4,6 +4,12 @@
         <ion-back-button></ion-back-button>
       </ion-buttons>
       <ion-title>Lista de Asistentes</ion-title>
+      <ion-buttons slot="end">
+          <ion-button fill="outline">
+            <ion-icon slot="end" name="md-log-out"></ion-icon>
+            Salir
+          </ion-button>
+        </ion-buttons>
     </ion-toolbar>
 
     <ion-searchbar animated (ionChange)="buscar($event)"></ion-searchbar>
