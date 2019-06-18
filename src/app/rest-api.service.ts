@@ -10,7 +10,7 @@ const apiUrl = "http://api.zippopotam.us/";
 })
 export class RestApiService {
 
-  token: any;
+  token: any = "";
   id: any;
 
   constructor(private http: HttpClient) { }
@@ -99,11 +99,15 @@ export class RestApiService {
   }
 
   validateLogin(){
-    if (this.token == undefined){
+    if (this.token == ""){
       return 0;
     }else{
       return 1;
     }
+  }
+
+  closeSession(){
+    this.token = "";
   }
 
 

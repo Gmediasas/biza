@@ -24,6 +24,11 @@ export class EventsListPage implements OnInit {
       })
   }
 
+  logOut(){
+    this.api.closeSession();
+    this.router.navigateByUrl('/home');
+  }
+
   ngOnInit() {
     this.getAllTasks();
   }
