@@ -104,6 +104,10 @@ export class EventsDetailPage implements OnInit {
     this.getEventsDetails();
   }
 
+  logOut(){
+    this.api.closeSession();
+    this.router.navigateByUrl('/home');
+  }
 
   async presentAlert(mensaje: string) {
     const alert = await this.alertCtrl.create({

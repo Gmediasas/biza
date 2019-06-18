@@ -90,6 +90,11 @@ export class EventListPage implements OnInit {
    // console.log(this.route.snapshot.params['event']);
   }
 
+  logOut(){
+    this.api.closeSession();
+    this.router.navigateByUrl('/home');
+  }
+
   submit() {
     const selectedOrderIds = this.FormGroup.value.orders
       .map((v, i) => v ? this.orders[i].id : null)
