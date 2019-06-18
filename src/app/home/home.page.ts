@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RestApiService } from '../rest-api.service';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import {
   BarcodeScannerOptions,
@@ -15,6 +16,8 @@ import {
 })
 export class HomePage {
 
+  currentScreenOrientation:string;
+
   encodeData: any;
   scannedData: {};
   barcodeScannerOptions: BarcodeScannerOptions;
@@ -26,14 +29,22 @@ export class HomePage {
     public api: RestApiService,  
     public alertCtrl: AlertController,
     private router: Router,
-    private barcodeScanner: BarcodeScanner
+    private barcodeScanner: BarcodeScanner,
+    private screenOrientation: ScreenOrientation
   ) {
+    this.currentScreenOrientation = this.screenOrientation.type; 
     this.encodeData = "https://www.FreakyJolly.com";
     //Options
     this.barcodeScannerOptions = {
       showTorchButton: true,
       showFlipCameraButton: true
     };
+  }
+
+
+  setPortrait(){
+    // set to portrait
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
   }
 
   // Metodo de inicio de sesion
@@ -82,6 +93,7 @@ export class HomePage {
   }
 
   ionViewWillEnter() {
+    this.setPortrait();
     if(this.api.validateLogin() != 0){
       this.router.navigateByUrl('/events-list');
     }
