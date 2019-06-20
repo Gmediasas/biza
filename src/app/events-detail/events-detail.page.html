@@ -13,7 +13,8 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-    <ion-grid>
+  <div>
+    <ion-grid padding>
       <ion-row color="primary" >
         <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
             <ion-img class="imgDescrip" [src]="'https://testing.gevents.co/middleware/public/images/events/'+ imagen"></ion-img>
@@ -26,7 +27,7 @@
             </p>
 
             <ion-button (click)="scanCode()" size="large"  expand="block">
-              Codigo QR
+              Código QR
             </ion-button>
             <ion-button id="{{id}}" [routerLink]="'/event-list/' + id" size="large"  expand="block">
               Lista
@@ -34,7 +35,5 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-   
-
-
+  </div>
 </ion-content>
