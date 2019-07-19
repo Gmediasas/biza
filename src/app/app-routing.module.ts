@@ -8,7 +8,9 @@ const routes: Routes = [
   //{ path: 'events-detail', loadChildren: './events-detail/events-detail.module#EventsDetailPageModule' },
   { path: 'events-detail/:event', loadChildren: './events-detail/events-detail.module#EventsDetailPageModule' },
   { path: 'event-qr', loadChildren: './event-qr/event-qr.module#EventQRPageModule' },
-  { path: 'event-list/:event', loadChildren: './event-list/event-list.module#EventListPageModule' },
+  { path: 'event-list/:event', loadChildren: './event-list/event-list.module#EventListPageModule' },  { path: 'terminos-condiciones', loadChildren: './terminos-condiciones/terminos-condiciones.module#TerminosCondicionesPageModule' },
+  { path: 'remember-password', loadChildren: './remember-password/remember-password.module#RememberPasswordPageModule' },
+
 ];
 
 @NgModule({

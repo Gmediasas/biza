@@ -30,11 +30,18 @@
             </ion-item>
             <ion-item>
               <ion-input [(ngModel)]="password" name="password" type="password" placeholder="Contraseña" required></ion-input>
-            </ion-item>
+            </ion-item><br />
+            <div align="center">
+              <ion-checkbox [(ngModel)]="termCond" name="termCond" required ></ion-checkbox> 
+              <a [routerLink]="'/terminos-condiciones'" >  Terminos y condiciones</a> 
+          </div>
           </div>
           <div size="large" padding >
              <ion-button expand="block" shape="round" type="submit" [disabled]="form.invalid" expand="block">Ingresar</ion-button>
           </div>
+          <div align="center">
+              <a [routerLink]="'/remember-password'" >  ¿Olvidaste tu contraseña? </a> 
+          </div>   
         </ion-col>
       </ion-row>
     </ion-grid>

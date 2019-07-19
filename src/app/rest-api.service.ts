@@ -12,6 +12,7 @@ export class RestApiService {
 
   token: any = "";
   id: any;
+  urlEmail: any="https://testing.gevents.co/eventosFree/public/";
 
   constructor(private http: HttpClient) { }
   
@@ -20,6 +21,21 @@ export class RestApiService {
     return this.http.get(path);
   }
 
+  // Metodo para restablecer la contraseña del usuario
+
+  rememberPassword(emailRemember: any):Observable<any>{
+    const httpHeaders = new HttpHeaders ({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json' 
+    });
+    const path = "https://testing.gevents.co/middleware/public/api/rememberPassword";
+    
+
+    return this.http.post(path,{
+      email: emailRemember,
+      url: this.urlEmail
+      },{ headers: httpHeaders }) 
+  }
   // Metodo para realizar el login
   loginPost(emailPost: any, passwordPost:any ):Observable<any>{
     const httpHeaders = new HttpHeaders ({

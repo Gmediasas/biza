@@ -37,14 +37,15 @@ export class EventsDetailPage implements OnInit {
       //Options
       this.barcodeScannerOptions = {
         showTorchButton: true,
-        showFlipCameraButton: true
+        showFlipCameraButton: true, 
+        prompt : "Message"
       };
     }
 
 
   scanCode() {
     this.barcodeScanner
-      .scan()
+      .scan(this.barcodeScannerOptions)
       .then(barcodeData => {
         this.scannedData = barcodeData.text;
         this.api.sendCodeQR(this.scannedData, this.id).subscribe(

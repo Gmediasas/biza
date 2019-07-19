@@ -13,7 +13,7 @@ export class FiltroPipe implements PipeTransform {
     texto = texto.toLowerCase();
     
     return arreglo.filter( item => {
-      return item.nombre_apellido.toLowerCase().includes(texto);
+      return item.nombre_apellido.toLowerCase().includes(texto) || item.codigo_boleta.toLowerCase().includes(texto);
     });
   }
 
