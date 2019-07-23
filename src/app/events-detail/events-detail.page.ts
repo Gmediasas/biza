@@ -38,7 +38,7 @@ export class EventsDetailPage implements OnInit {
       this.barcodeScannerOptions = {
         showTorchButton: true,
         showFlipCameraButton: true, 
-        prompt : "Message"
+        prompt : "Por favor ubiqué el codigo QR centrado en el cuadro"
       };
     }
 
