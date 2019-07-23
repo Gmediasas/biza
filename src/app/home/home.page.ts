@@ -56,6 +56,8 @@ export class HomePage {
         if (data !== null && data !== undefined) {
           this.router.navigateByUrl('/events-list');
           this.api.setToken(data.access_token);
+          localStorage.setItem("token", data.access_token);
+          localStorage.setItem("id", data.user.id);
           this.api.setId( data.user.id);
         }else{
          this.presentAlert('Datos incorrectos');

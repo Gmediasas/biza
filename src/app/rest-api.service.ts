@@ -10,14 +10,15 @@ const apiUrl = "http://api.zippopotam.us/";
 })
 export class RestApiService {
 
-  token: any = "";
-  id: any;
+  token: any = localStorage.getItem("token");
+  id: any = localStorage.getItem("id");
   urlEmail: any="https://testing.gevents.co/eventosFree/public/";
+  MyUrl:any="https://testing.gevents.co/middleware/public/api";
 
   constructor(private http: HttpClient) { }
   
   getAllTask(){
-    const path = "http://localhost/middleware/public/api/detail_event_free/2";
+    const path = this.MyUrl+"/detail_event_free/1";
     return this.http.get(path);
   }
 
@@ -28,7 +29,7 @@ export class RestApiService {
       'Content-Type': 'application/json',
       'Accept': 'application/json' 
     });
-    const path = "https://testing.gevents.co/middleware/public/api/rememberPassword";
+    const path = this.MyUrl+"/rememberPassword";
     
 
     return this.http.post(path,{
@@ -42,7 +43,7 @@ export class RestApiService {
       'Content-Type': 'application/json',
       'Accept': 'application/json' 
     });
-    const path = "https://testing.gevents.co/middleware/public/api/login_user_cors";
+    const path = this.MyUrl+"/login_user_cors";
 
     return this.http.post(path,{
       email: emailPost,
@@ -63,12 +64,14 @@ export class RestApiService {
 
   // Obtener todos los eventos de un usuario
   getAllEvents():Observable<any>{
+
+    
     const httpHeaders = new HttpHeaders ({
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Authorization': 'Bearer '+ this.token
     });
-    const path = "https://testing.gevents.co/middleware/public/api/list_events_free_cors/" + this.id;
+    const path = this.MyUrl+"/api/list_events_free_cors/" + this.id;
     return this.http.get(path,{headers: httpHeaders});
   }
 
@@ -78,7 +81,10 @@ export class RestApiService {
       'Accept': 'application/json',
       'Authorization': 'Bearer '+ this.token
     });
-    const path = "https://testing.gevents.co/middleware/public/api/detail_event_free_cors/" + evento;
+    const path = this.MyUrl+"/detail_event_free_cors/" + evento;
+
+    console.log(this.token);
+console.log(this.id);
     return this.http.get(path,{headers: httpHeaders});
   }
 
@@ -88,7 +94,7 @@ export class RestApiService {
       'Accept': 'application/json',
       'Authorization': 'Bearer '+ this.token
     });
-    const path = "https://testing.gevents.co/middleware/public/api/boletas_eventos/" + evento;
+    const path = this.MyUrl+"/boletas_eventos/" + evento;
     return this.http.get(path,{headers: httpHeaders});
   }
 
@@ -99,7 +105,7 @@ export class RestApiService {
       'Authorization': 'Bearer '+ this.token
     });
 
-    const path = "https://testing.gevents.co/middleware/public/api/decode_code_QR";
+    const path = this.MyUrl+"/decode_code_QR";
     return this.http.post(path,{"codigo":codigo, "evento": evento},{headers: httpHeaders});
   }
 
@@ -110,7 +116,7 @@ export class RestApiService {
       'Authorization': 'Bearer '+ this.token
     });
 
-    const path = "https://testing.gevents.co/middleware/public/api/validate_multi_boletas";
+    const path = this.MyUrl+"/validate_multi_boletas";
     return this.http.post(path,{"boletas":tickes},{headers: httpHeaders});
   }
 
@@ -124,6 +130,7 @@ export class RestApiService {
 
   closeSession(){
     this.token = "";
+    localStorage.setItem("token", ' ');     
   }
 
 

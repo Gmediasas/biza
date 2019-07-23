@@ -94,7 +94,7 @@ export class EventsDetailPage implements OnInit {
         this.descripcion = data.evento.descripcion
         this.imagen = data.imagenLogo.imagen
         this.id = data.evento.id
-        //console.log(data);
+        console.log(data);
       }
       ,error =>{
         console.log("noo");
